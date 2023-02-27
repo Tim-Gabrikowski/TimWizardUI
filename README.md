@@ -1,5 +1,16 @@
 # TimWizardUI - Dokumentation
 
+## TODO
+
+- Layout elemente
+  - vertical
+  - horizontal
+  - grid
+  - schachtelbar
+- links (in Text)
+- Bilder / Icons
+
+
 ## Nutzung
 
 Importiere die `framework.js` Datei in dein HTML-Code und nutze die Funktionen um deine Widgets zu bauen.
