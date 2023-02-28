@@ -1,30 +1,31 @@
 "use strict";
 
-/* CONTAINER */
-function container_create(options) {
-	let container = document.createElement("div");
-	container.className = "container " + (options.center ? "center " : "") + (options.classes || "");
-	container.id = options.id || "container_" + genRanHex(6);
+/* page */
+function page_create(options) {
+	let page = document.createElement("div");
+	page.className = "page " + (options.center ? "center " : "") + (options.classes || "");
+	page.id = options.id || "page_" + genRanHex(6);
 
-	_handle_styles(container, options);
-	container.style.display = options.hide ? "none" : "flex";
+	_handle_styles(page, options);
+	page.style.display = options.hide ? "none" : "flex";
+	page.style.flexDirection = options.layout || "unset";
 
 	if(options.title && options.title != "") {
-		container.appendChild(header_create({text: options.title}));
+		page.appendChild(header_create({text: options.title}));
 	}
 
 	if(options.children) {
-		options.children.forEach(child => container.appendChild(child));
+		options.children.forEach(child => page.appendChild(child));
 	}
 
-	_handle_parent(container, options);
-	return container;
+	_handle_parent(page, options);
+	return page;
 }
 
-function container_show(container) {
-	let containers = document.getElementsByClassName("container");
-	for(let c of containers) {
-		c.style.display = (c == container) ? "flex" : "none";
+function page_show(page) {
+	let pages = document.getElementsByClassName("page");
+	for(let c of pages) {
+		c.style.display = (c == page) ? "flex" : "none";
 	}
 }
 
