@@ -167,3 +167,15 @@ html, body {
 	box-shadow: 0 0 35px var(--clr),
 		inset 0px 0px 0px 1px var(--clr);
 }
+
+/* Alignments */
+
+.align-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.align-row {
+	display: flex;
+	flex-direction: row;
+}

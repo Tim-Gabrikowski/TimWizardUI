@@ -112,3 +112,21 @@ let input = field_create({
 input.change("new Value");          // Value des Input-Elements setzen
 input.get();                        // Value des Input-Elements bekommen
 ```
+
+### Layout
+
+Layout element zum anordnet und sortieren von Elementen.
+
+```javascript
+let layout = layout_create({
+  id: "test_layout",                // die Id des Elements (default: "layout_[6-Bit HEX]")
+  className: "",                    // CSS-Klassen zum anhängen
+  type: "",                         // [column | column-reverse | row | row-reverse | unset] (default; column)
+  parent: "",                       // QuerySelector of parent node
+  childs: [                         // Array of child elements
+    create_text({                   // example child element
+      text: "Ich bin ein Text"
+    }),
+  ],
+});
+```

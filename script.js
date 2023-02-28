@@ -83,6 +83,25 @@ function button_create(options) {
 	return button;
 }
 
+/* layout element */
+function layout_create(options){
+	let cont = document.createElement("div");
+	cont.id = options.id || "";
+	cont.className += (options.classes ? options.classes : "");
+	cont.style.display = "flex";
+	cont.style.flexDirection = options.type || "column";
+
+	_handle_styles(cont, options);
+
+	for(let elem of options.childs) {
+		cont.appendChild(elem);
+	}
+
+	_handle_parent(cont, options);
+
+	return cont;
+}
+
 /* FIELD */
 function field_create(options) {
 	let ranhex = genRanHex(6);
