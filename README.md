@@ -121,8 +121,8 @@ Layout element zum anordnet und sortieren von Elementen.
 let layout = layout_create({
   id: "test_layout",                // die Id des Elements (default: "layout_[6-Bit HEX]")
   className: "",                    // CSS-Klassen zum anhängen
-  type: "",                         // [column | column-reverse | row | row-reverse | unset] (default; column)
-  parent: "",                       // QuerySelector of parent node
+  type: "column",                   // [column | column-reverse | row | row-reverse | unset] (default; column)
+  parent: "#page_a",                // QuerySelector of parent node
   childs: [                         // Array of child elements
     create_text({                   // example child element
       text: "Ich bin ein Text"
