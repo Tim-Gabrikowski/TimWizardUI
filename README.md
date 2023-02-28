@@ -102,7 +102,7 @@ Inputfeld ...
 
 ```javascript
 let input = field_create({
-    id: "test_input",               // die Id des Elements (default: "text_[6-Bit HEX]")
+    id: "test_input",               // die Id des Elements (default: "input_[6-Bit HEX]")
     className: "",                  // CSS-Klassen zum anhängen
     color: "",                      // CSS-Colordefinition für das Element
     defaultValue: "default",        // Default value for the Input
@@ -110,4 +110,5 @@ let input = field_create({
     parent: "body"                  // Das Element, in das das Inputfeld angehängt werden soll (querySelector)
 });
 input.change("new Value");          // Value des Input-Elements setzen
+input.get();                        // Value des Input-Elements bekommen
 ```

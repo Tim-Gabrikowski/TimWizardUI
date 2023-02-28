@@ -108,8 +108,11 @@ function field_create(options) {
 
 	cont.appendChild(input);
 	cont.appendChild(label);
-	input.change = function(newText) {
-		this.value = newText;
+	cont.change = function(newText) {
+		this.children[0].value = newText;
+	}
+	cont.get = function () {
+		return this.children[0].value
 	}
 
 	return cont;
