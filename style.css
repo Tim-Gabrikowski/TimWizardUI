@@ -1,7 +1,7 @@
-/* Fonts */
+/* FONT */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 
-/* General */
+/* GENERAL */
 * {
 	font-family: 'Ubuntu', sans-serif;
 }
@@ -13,31 +13,41 @@ html, body {
 	margin: 0px;
 	background-color: #1e1e1e;
 	color: white;
+	display: flex;
 }
 
 .center {
 	text-align: center;
-
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-
-	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	margin: auto 0;
 }
 
+/* PAGE */
+.page {
+	display: none;
+}
+
+/* LAYOUT */
+.layout {
+	display: flex;
+}
+
+/* HEADER */
 .header {
-	margin: 0 0 10px 0;
-	padding: 0;
+	margin: 0px;
+	padding: 10px 0px;
 	font-size: 36px;
 	font-weight: normal;
 	text-align: center;
 }
 
-/* Buttons */
+/* TEXT */
+.text {
+	margin: 10px 0px;
+}
+
+/* BUTTON */
 .button {
 	border: 2px solid var(--clr);
 	position: relative;
@@ -49,7 +59,7 @@ html, body {
 	letter-spacing: 0.1em;
 	height: 50px;
 	line-height: 46px;
-	padding: 0px 30px;
+	padding: 0px;
 	transition: 0.5s;
 	margin: 10px;
 	border-radius: 5px;
@@ -108,8 +118,8 @@ html, body {
 	left: 80%;
 }
 
-/* Input */
-.icont {
+/* INPUT */
+.input-container {
 	position: relative;
 }
 
@@ -168,8 +178,7 @@ html, body {
 		inset 0px 0px 0px 1px var(--clr);
 }
 
-/* Alignments */
-
+/* ALIGN */
 .align-column {
 	display: flex;
 	flex-direction: column;

@@ -1,45 +1,52 @@
 "use strict";
 
-/* page */
+let touch_device = (('ontouchstart' in window) ||
+	(navigator.maxTouchPoints > 0) ||
+	(navigator.msMaxTouchPoints > 0));
+
+/* PAGE */
 function page_create(options) {
 	let page = document.createElement("div");
-	page.className = "page " + (options.center ? "center " : "") + (options.classes || "");
-	page.id = options.id || "page_" + genRanHex(6);
-
+	_handle_id(page, options);
+	_handle_class(page, "page " + (options.center ? "center " : ""), options);
 	_handle_styles(page, options);
-	page.style.display = options.hide ? "none" : "flex";
-	page.style.flexDirection = options.layout || "unset";
-
-	if(options.title && options.title != "") {
-		page.appendChild(header_create({text: options.title}));
+	page.style.flexDirection = options.type || "column";
+	if(options.title) {
+		options.children.unshift(header_create({ text: options.title }));
 	}
 
-	if(options.children) {
-		options.children.forEach(child => page.appendChild(child));
-	}
-
-	_handle_parent(page, options);
+	_handle_children(page, options);
+	document.body.appendChild(page);
 	return page;
 }
 
-function page_show(page) {
+function page_show(current) {
 	let pages = document.getElementsByClassName("page");
-	for(let c of pages) {
-		c.style.display = (c == page) ? "flex" : "none";
+	for(let page of pages) {
+		page.style.display = (page == current) ? "flex" : "none";
 	}
+}
+
+/* LAYOUT */
+function layout_create(options) {
+	let layout = document.createElement("div");
+	_handle_id(layout, options);
+	_handle_class(layout, "layout", options);
+	layout.style.flexDirection = options.type || "column";
+	_handle_styles(layout, options);
+	_handle_children(layout, options);
+	return layout;
 }
 
 /* HEADER */
 function header_create(options) {
 	let header = document.createElement("p");
-	header.innerText = options.text || "HEADER TEXT";
-	header.className = "header" + (options.classes || "");
-	header.id = options.id || "header_" + genRanHex(6);
-
+	header.innerText = options.text || "HEADER";
+	_handle_id(header, options);
+	_handle_class(header, "header", options);
 	_handle_styles(header, options);
-	_handle_parent(header, options);
-	header.change = function(newText) {
-		this.innerText = newText;
+	header.change = function(new_text) {
+		this.innerText = new_text;
 	}
 
 	return header;
@@ -47,33 +54,54 @@ function header_create(options) {
 
 /* TEXT */
 function text_create(options) {
-	let text = document.createElement("p");
-	text.innerHTML = options.text || "text";
-	text.id = options.id || "text_" + genRanHex(6);
-	text.className = options.classes || "";
-
+	let text = document.createElement("div");
+	text.innerText = options.text || "TEXT";
+	_handle_id(text, options);
+	_handle_class(text, "text", options);
 	_handle_styles(text, options);
-	_handle_parent(text, options);
-	text.change = function(newText) {
-		this.innerText = newText;
+	text.change = function(new_text) {
+		this.innerText = new_text;
 	}
 
 	return text;
 }
 
+/* IMAGE */
+function image_create(options) {
+	let image = document.createElement("img");
+	image.alt = options.alt || "";
+	image.src = options.src || "";
+	_handle_id(image, options);
+	_handle_class(image, "image", options);
+	_handle_styles(image, options);
+	return image;
+}
+
 /* BUTTON */
 function button_create(options) {
 	let button = document.createElement("button");
-	button.id = options.id || "btn_" + genRanHex(6);
-	button.className = "button " + (options.classes || "");
-	button.innerText = options.label || "BUTTON TEXT";
+	_handle_id(button, options);
+	_handle_class(button, "button", options);
+	if(options.label) {
+		button.innerText = options.label || "BUTTON";
+	}
+	else {
+		_handle_children(button, options);
+	}
 
 	_handle_styles(button, options);
-	button.style.setProperty("--clr", options.color || "hsl(335deg 100% 47%)");
-	_handle_parent(button, options);
-
-	if(options.onclick) {
-		button.onclick = options.onclick;
+	_handle_color(button, options);
+	if(touch_device) {
+		if(options.onclick) {
+			button.onclick = function() {
+				setTimeout(options.onclick, 500);
+			}
+		}
+	}
+	else {
+		if(options.onclick) {
+			button.onclick = options.onclick;
+		}
 	}
 
 	button.change = function(newText) {
@@ -83,76 +111,64 @@ function button_create(options) {
 	return button;
 }
 
-/* layout element */
-function layout_create(options){
-	let cont = document.createElement("div");
-	cont.id = options.id || "";
-	cont.className += (options.classes ? options.classes : "");
-	cont.style.display = "flex";
-	cont.style.flexDirection = options.type || "column";
-
-	_handle_styles(cont, options);
-
-	for(let elem of options.childs) {
-		cont.appendChild(elem);
-	}
-
-	_handle_parent(cont, options);
-
-	return cont;
-}
-
 /* FIELD */
 function field_create(options) {
-	let ranhex = genRanHex(6);
-	let cont = document.createElement("div");
-	cont.className = "icont";
+	let container = document.createElement("div");
+	container.className = "input-container";
 
 	let input = document.createElement("input");
-	input.id = options.id || "input_" + ranhex;
-	input.className = "input " + (options.classes || "");
-	input.value = options.defaultValue || "";
+	_handle_id(input, options);
+	_handle_class(input, "input", options);
+	input.value = options.value || "";
 	input.placeholder = options.placeholder || "";
-	input.style.setProperty("--clr", options.color || "hsl(335deg 100% 47%)");
+	_handle_color(input, options);
 
 	let label = document.createElement("label");
-	input.id = options.id || "label_" + ranhex;
-	label.for = input.id;
 	label.innerHTML = input.placeholder;
 	label.className = "label";
-	label.style.setProperty("--clr", options.color || "hsl(335deg 100% 47%)");
+	_handle_color(label, options);
 
-
-	_handle_parent(cont, options);
-
-	cont.appendChild(input);
-	cont.appendChild(label);
-	cont.change = function(newText) {
-		this.children[0].value = newText;
-	}
-	cont.get = function () {
-		return this.children[0].value
+	container.appendChild(input);
+	container.appendChild(label);
+	container.set = function(new_text) {
+		this.children[0].value = new_text;
 	}
 
-	return cont;
+	container.get = function() {
+		return this.children[0].value;
+	}
+
+	return container;
 }
 
 /* UTIL */
-/* Generate random hex string of length */
-const genRanHex = size => [...Array(size)]
-	.map(() => Math.floor(Math.random() * 16).toString(16))
-	.join('');
-
-function _handle_styles(elem, options) {
+function _handle_styles(element, options) {
 	if(options.style) {
 		for(let property in options.style) {
-			elem.style[property] = options.style[property];
+			element.style[property] = options.style[property];
 		}
 	}
 }
 
-function _handle_parent(elem, options) {
-	if(options.parent) {
-		document.querySelector(options.parent).appendChild(elem);
+function _handle_id(element, options) {
+	if(options.id) {
+		element.id = options.id;
 	}
 }
+
+function _handle_class(element, default_class, options) {
+	element.className = default_class + " " + (options.classes || "");
+}
+
+function _handle_color(element, options) {
+	element.style.setProperty("--clr", options.color || "#FFFFFF");
+}
+
+function _handle_children(element, options) {
+	if(options.children) {
+		options.children.forEach(child => element.appendChild(child));
+	}
+}
+
+document.body.className = "center";
+
