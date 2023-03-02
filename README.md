@@ -13,7 +13,13 @@
 
 ## Nutzung
 
-Importiere die `framework.js` Datei in dein HTML-Code und nutze die Funktionen um deine Widgets zu bauen.
+Add the following to your HTML-file. 
+```html
+<script type="text/javascript" src="https://tim-gabrikowski.github.io/TimWizardUI/script.js"></script>
+<link rel="stylesheet" href="https://tim-gabrikowski.github.io/TimWizardUI/style.css" type="text/css">
+```
+
+Then create a script for your layout and use the widgets:
 
 ## Widgets
 
