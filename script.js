@@ -144,6 +144,17 @@ function field_create(options) {
 	return container;
 }
 
+/* CHART */
+function chart_create(options) {
+	let chart = document.createElement("canvas");
+	chart.height = options.height || 150;
+	chart.width = options.width || 300;
+	_handle_id(chart, options);
+	_handle_class(chart, "chart", options);
+	_handle_styles(chart, options);
+	return chart;
+}
+
 /* UTIL */
 function _handle_styles(element, options) {
 	if(options.style) {
