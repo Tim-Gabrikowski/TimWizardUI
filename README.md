@@ -20,18 +20,19 @@ Importiere die `framework.js` Datei in dein HTML-Code und nutze die Funktionen u
 - [Text](#text)
 - [Überschriften](#überschriften)
 - [Buttons](#button)
-- [page](#page)
+- [Page](#page)
 - [Inputfelder](#input)
+- [Layout](#layout)
+- [Images](#images)
 
 ### Text
 
 Ein einfaches Element zum Anzeigen von Text.
 ```javascript
 let text = text_create({
-    text: "Ich bin ein Text",       // Der Text, der angezeigt wird (default: "text")
-    id: "test_text",                // die Id des Elements (default: "text_[6-Bit HEX]")
+    text: "Ich bin ein Text",       // Der Text, der angezeigt wird 
+    id: "test_text",                // die Id des Elements 
     classes: "bold green",          // CSS-Klassen zum anhängen
-    parent: "#example_page"    // Das Element, in das der Text angehängt werden soll (querySelector)
 });
 text.change("new Text")             // text ändern
 ```
@@ -42,10 +43,9 @@ Eine einfache Überschrift.
 
 ```javascript
 let header = header_create({
-	text: "Ich bin eine Überschrift",       // Der Text, der angezeigt wird (default: "text")
-	id: "test_header",                      // die Id des Elements (default: "text_[6-Bit HEX]")
+	text: "Ich bin eine Überschrift",       // Der Text, der angezeigt wird
+	id: "test_header",                      // die Id des Elements
 	classes: "bold green",                  // CSS-Klassen zum anhängen
-	parent: "#example_page"            // Das Element, in das die Überschrift angehängt werden soll (querySelector)
 });
 header.change("new Header")                 // Überschrift ändern
 ```
@@ -57,9 +57,8 @@ Ein sehr schön gestylter Button.
 ```javascript
 let button = button_create({
     label: "Ich bin ein Button",            // der Text auf dem Button
-	id: "test_header",                      // die Id des Elements (default: "text_[6-Bit HEX]")
+	id: "test_header",                      // die Id des Elements 
 	classes: "bold green",                  // CSS-Klassen zum anhängen
-	parent: "#example_page",           // Das Element, in das der Button angehängt werden soll (querySelector)
     color: "#ffffff",                       // CSS-Colordefinition für das Element
     onclick: () => {                        // Die Funktion die beim drücken des Buttons aufgerufen wird.
 		alert("CLICK!");
@@ -75,9 +74,8 @@ Ein Seite, die einzeln angezeigt werden kann. Ist eine Flexbox.
 
 ```javascript
 let page = page_create({
-    id: "test_page",                       // die Id des Elements (default: "text_[6-Bit HEX]")
-    parent: "body",                             // Das Element, in das der page angehängt werden soll (querySelector)
-    title: "New generated page",           // generate a Header at the top of the page if provided
+    id: "test_page",                            // die Id des Elements
+    title: "New generated page",                // generate a Header at the top of the page if provided
     center: false,                              // Center the page vertically
     style: {                                    // style Attributes (ALL AVAILABLE CSS ATTRIBUTES)
         height: "500px",                        // (CSS-Property height)
@@ -102,12 +100,11 @@ Inputfeld ...
 
 ```javascript
 let input = field_create({
-    id: "test_input",               // die Id des Elements (default: "input_[6-Bit HEX]")
+    id: "test_input",               // die Id des Elements
     className: "",                  // CSS-Klassen zum anhängen
     color: "",                      // CSS-Colordefinition für das Element
     defaultValue: "default",        // Default value for the Input
     placeholder: "Type something",  // placeholder
-    parent: "body"                  // Das Element, in das das Inputfeld angehängt werden soll (querySelector)
 });
 input.change("new Value");          // Value des Input-Elements setzen
 input.get();                        // Value des Input-Elements bekommen
@@ -119,14 +116,29 @@ Layout element zum anordnet und sortieren von Elementen.
 
 ```javascript
 let layout = layout_create({
-  id: "test_layout",                // die Id des Elements (default: "layout_[6-Bit HEX]")
+  id: "test_layout",                // die Id des Elements
   className: "",                    // CSS-Klassen zum anhängen
   type: "column",                   // [column | column-reverse | row | row-reverse | unset] (default; column)
-  parent: "#page_a",                // QuerySelector of parent node
   childs: [                         // Array of child elements
     create_text({                   // example child element
       text: "Ich bin ein Text"
     }),
   ],
+});
+```
+
+### Images
+
+Ohne Bilder ist eine Internetseite keine Internetseite, oder?
+
+```javascript
+let image = image_create({
+  id: "test_image",                 // Die ID des Elements
+  classes: "",                      // CSS-Klassen
+  src: "",                          // Bildurl
+  alt: "",                          // Alternativtext, wenn das Bild nicht da ist
+  style: {                          // CSS Style Attribute
+    width: "100px",  
+  },
 });
 ```
