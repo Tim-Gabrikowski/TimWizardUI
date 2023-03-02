@@ -35,6 +35,9 @@ function layout_create(options) {
 	layout.style.flexDirection = options.type || "column";
 	_handle_styles(layout, options);
 	_handle_children(layout, options);
+
+	_handle_border(layout, options);
+	_handle_color(layout, options);
 	return layout;
 }
 
@@ -167,6 +170,11 @@ function _handle_color(element, options) {
 function _handle_children(element, options) {
 	if(options.children) {
 		options.children.forEach(child => element.appendChild(child));
+	}
+}
+function _handle_border(element, options) {
+	if(options.border){
+		element.className += " border"
 	}
 }
 
