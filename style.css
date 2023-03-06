@@ -191,6 +191,18 @@ html, body {
 		inset 0px 0px 0px 1px var(--clr);
 }
 
+/* Chrome, Safari, Edge, Opera */
+input.input::-webkit-outer-spin-button,
+input.input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input.input[type=number] {
+	-moz-appearance: textfield;
+}
+
 /* ALIGN */
 .align-column {
 	display: flex;
