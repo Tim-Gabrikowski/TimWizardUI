@@ -124,6 +124,7 @@ function field_create(options) {
 	_handle_class(input, "input", options);
 	input.value = options.value || "";
 	input.placeholder = options.placeholder || "";
+	input.type = options.type || "text";
 	_handle_color(input, options);
 
 	let label = document.createElement("label");

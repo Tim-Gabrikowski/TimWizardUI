@@ -111,6 +111,7 @@ Inputfeld ...
 let input = field_create({
     id: "test_input",               // die Id des Elements
     className: "",                  // CSS-Klassen zum anhängen
+    type: "text",                   // Typ des Input elements
     color: "",                      // CSS-Colordefinition für das Element
     defaultValue: "default",        // Default value for the Input
     placeholder: "Type something",  // placeholder
