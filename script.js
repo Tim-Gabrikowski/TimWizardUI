@@ -1,13 +1,11 @@
 "use strict";
 
-import "./style.css";
-
 let touch_device = (('ontouchstart' in window) ||
 	(navigator.maxTouchPoints > 0) ||
 	(navigator.msMaxTouchPoints > 0));
 
 /* PAGE */
-function page_create(options) {
+export function page_create(options) {
 	let page = document.createElement("div");
 	_handle_id(page, options);
 	_handle_class(page, "page " + (options.center ? "center " : ""), options);
@@ -22,7 +20,7 @@ function page_create(options) {
 	return page;
 }
 
-function page_show(current) {
+export function page_show(current) {
 	let pages = document.getElementsByClassName("page");
 	for(let page of pages) {
 		page.style.display = (page == current) ? "flex" : "none";
@@ -30,7 +28,7 @@ function page_show(current) {
 }
 
 /* LAYOUT */
-function layout_create(options) {
+export function layout_create(options) {
 	let layout = document.createElement("div");
 	_handle_id(layout, options);
 	_handle_class(layout, "layout", options);
@@ -44,7 +42,7 @@ function layout_create(options) {
 }
 
 /* HEADER */
-function header_create(options) {
+export function header_create(options) {
 	let header = document.createElement("p");
 	header.innerText = options.text || "HEADER";
 	_handle_id(header, options);
@@ -58,7 +56,7 @@ function header_create(options) {
 }
 
 /* TEXT */
-function text_create(options) {
+export function text_create(options) {
 	let text = document.createElement("div");
 	text.innerText = options.text || "TEXT";
 	_handle_id(text, options);
@@ -72,7 +70,7 @@ function text_create(options) {
 }
 
 /* IMAGE */
-function image_create(options) {
+export function image_create(options) {
 	let image = document.createElement("img");
 	image.alt = options.alt || "";
 	image.src = options.src || "";
@@ -83,7 +81,7 @@ function image_create(options) {
 }
 
 /* BUTTON */
-function button_create(options) {
+export function button_create(options) {
 	let button = document.createElement("button");
 	_handle_id(button, options);
 	_handle_class(button, "button", options);
@@ -117,7 +115,7 @@ function button_create(options) {
 }
 
 /* FIELD */
-function field_create(options) {
+export function field_create(options) {
 	let container = document.createElement("div");
 	container.className = "input-container";
 
@@ -147,7 +145,7 @@ function field_create(options) {
 }
 
 /* CHART */
-function chart_create(options) {
+export function chart_create(options) {
 	let chart = document.createElement("canvas");
 	chart.height = options.height || 150;
 	chart.width = options.width || 300;

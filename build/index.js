@@ -1,26 +1,36 @@
-require("./index.css");
+function $parcel$export(e, n, v, s) {
+  Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
+}
 
-
+$parcel$export(module.exports, "page_create", () => $650934f729b0bf11$export$418da982607c7687);
+$parcel$export(module.exports, "header_create", () => $650934f729b0bf11$export$2e2f1a8b6d4607c2);
+$parcel$export(module.exports, "page_show", () => $650934f729b0bf11$export$49c4650fa4053fe0);
+$parcel$export(module.exports, "layout_create", () => $650934f729b0bf11$export$b9180922d13aefb4);
+$parcel$export(module.exports, "text_create", () => $650934f729b0bf11$export$370a496c3c46c294);
+$parcel$export(module.exports, "image_create", () => $650934f729b0bf11$export$e58f0bd7d775738b);
+$parcel$export(module.exports, "button_create", () => $650934f729b0bf11$export$84327131eb86d0b);
+$parcel$export(module.exports, "field_create", () => $650934f729b0bf11$export$8d53b56141a9648a);
+$parcel$export(module.exports, "chart_create", () => $650934f729b0bf11$export$e05cb23dc8ea8a7);
 "use strict";
 let $650934f729b0bf11$var$touch_device = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-/* PAGE */ function $650934f729b0bf11$var$page_create(options) {
+function $650934f729b0bf11$export$418da982607c7687(options) {
     let page = document.createElement("div");
     $650934f729b0bf11$var$_handle_id(page, options);
     $650934f729b0bf11$var$_handle_class(page, "page " + (options.center ? "center " : ""), options);
     $650934f729b0bf11$var$_handle_styles(page, options);
     page.style.flexDirection = options.type || "column";
-    if (options.title) options.children.unshift($650934f729b0bf11$var$header_create({
+    if (options.title) options.children.unshift($650934f729b0bf11$export$2e2f1a8b6d4607c2({
         text: options.title
     }));
     $650934f729b0bf11$var$_handle_children(page, options);
     document.body.appendChild(page);
     return page;
 }
-function $650934f729b0bf11$var$page_show(current) {
+function $650934f729b0bf11$export$49c4650fa4053fe0(current) {
     let pages = document.getElementsByClassName("page");
     for (let page of pages)page.style.display = page == current ? "flex" : "none";
 }
-/* LAYOUT */ function $650934f729b0bf11$var$layout_create(options) {
+function $650934f729b0bf11$export$b9180922d13aefb4(options) {
     let layout = document.createElement("div");
     $650934f729b0bf11$var$_handle_id(layout, options);
     $650934f729b0bf11$var$_handle_class(layout, "layout", options);
@@ -31,7 +41,7 @@ function $650934f729b0bf11$var$page_show(current) {
     $650934f729b0bf11$var$_handle_color(layout, options);
     return layout;
 }
-/* HEADER */ function $650934f729b0bf11$var$header_create(options) {
+function $650934f729b0bf11$export$2e2f1a8b6d4607c2(options) {
     let header = document.createElement("p");
     header.innerText = options.text || "HEADER";
     $650934f729b0bf11$var$_handle_id(header, options);
@@ -42,7 +52,7 @@ function $650934f729b0bf11$var$page_show(current) {
     };
     return header;
 }
-/* TEXT */ function $650934f729b0bf11$var$text_create(options) {
+function $650934f729b0bf11$export$370a496c3c46c294(options) {
     let text = document.createElement("div");
     text.innerText = options.text || "TEXT";
     $650934f729b0bf11$var$_handle_id(text, options);
@@ -53,7 +63,7 @@ function $650934f729b0bf11$var$page_show(current) {
     };
     return text;
 }
-/* IMAGE */ function $650934f729b0bf11$var$image_create(options) {
+function $650934f729b0bf11$export$e58f0bd7d775738b(options) {
     let image = document.createElement("img");
     image.alt = options.alt || "";
     image.src = options.src || "";
@@ -62,7 +72,7 @@ function $650934f729b0bf11$var$page_show(current) {
     $650934f729b0bf11$var$_handle_styles(image, options);
     return image;
 }
-/* BUTTON */ function $650934f729b0bf11$var$button_create(options) {
+function $650934f729b0bf11$export$84327131eb86d0b(options) {
     let button = document.createElement("button");
     $650934f729b0bf11$var$_handle_id(button, options);
     $650934f729b0bf11$var$_handle_class(button, "button", options);
@@ -80,7 +90,7 @@ function $650934f729b0bf11$var$page_show(current) {
     };
     return button;
 }
-/* FIELD */ function $650934f729b0bf11$var$field_create(options) {
+function $650934f729b0bf11$export$8d53b56141a9648a(options) {
     let container = document.createElement("div");
     container.className = "input-container";
     let input = document.createElement("input");
@@ -103,7 +113,7 @@ function $650934f729b0bf11$var$page_show(current) {
     };
     return container;
 }
-/* CHART */ function $650934f729b0bf11$var$chart_create(options) {
+function $650934f729b0bf11$export$e05cb23dc8ea8a7(options) {
     let chart = document.createElement("canvas");
     chart.height = options.height || 150;
     chart.width = options.width || 300;
