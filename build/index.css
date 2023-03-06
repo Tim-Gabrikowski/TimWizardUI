@@ -1,0 +1,186 @@
+@font-face {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("ubuntu.d31083da.woff2") format("woff2");
+  unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+* {
+  font-family: Ubuntu, sans-serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background-color: #1e1e1e;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.center {
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  margin: auto 0;
+}
+
+.page {
+  display: none;
+}
+
+.layout {
+  display: flex;
+}
+
+.header {
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 36px;
+  font-weight: normal;
+}
+
+.text {
+  margin: 10px 0;
+}
+
+.border {
+  border: 2px solid var(--clr);
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 3px #27282c;
+}
+
+.button {
+  border: 2px solid var(--clr);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  height: 50px;
+  cursor: pointer;
+  background: #444;
+  border-radius: 5px;
+  outline: none;
+  margin: 10px;
+  padding: 0;
+  font-size: 1.5em;
+  line-height: 46px;
+  text-decoration: none;
+  transition: all .5s;
+  display: block;
+  position: relative;
+  box-shadow: inset 0 0 0 3px #27282c;
+}
+
+.button:hover, .button:active, .button:focus {
+  letter-spacing: .15em;
+  color: var(--clr);
+  box-shadow: 0 0 35px var(--clr), inset 0px 0px 0px 1px var(--clr);
+}
+
+.button:before {
+  content: "";
+  width: 10px;
+  height: 5px;
+  border: 2px solid var(--clr);
+  background: #27282c;
+  border-radius: 0;
+  transition: all .5s;
+  position: absolute;
+  top: -4px;
+  left: 80%;
+  transform: translateX(-50%);
+}
+
+.button:hover:before, .button:active:before, .button:focus:before {
+  width: 20px;
+  left: 20%;
+}
+
+.button:after {
+  content: "";
+  width: 10px;
+  height: 5px;
+  border: 2px solid var(--clr);
+  background: #27282c;
+  border-radius: 0;
+  transition: all .5s;
+  position: absolute;
+  bottom: -4px;
+  left: 20%;
+  transform: translateX(-50%);
+}
+
+.button:hover:after, .button:active:after, .button:focus:after {
+  width: 20px;
+  left: 80%;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input {
+  appearance: none;
+  border: 2px solid var(--clr);
+  color: #fff;
+  letter-spacing: .1em;
+  box-sizing: border-box;
+  width: 480px;
+  background: #444;
+  border-radius: 5px;
+  outline: none;
+  margin: 10px;
+  padding: 10px 30px;
+  font-size: 1.5em;
+  text-decoration: none;
+  transition: all .5s;
+  position: relative;
+  box-shadow: inset 0 0 0 3px #27282c;
+}
+
+.label {
+  z-index: 1000;
+  text-align: left;
+  content: "Aaa";
+  color: var(--clr);
+  border: 2px solid var(--clr);
+  background-color: #444;
+  border-radius: 4px;
+  padding: 0 3px;
+  font-size: 14px;
+  transition: all .5s;
+  display: none;
+  position: absolute;
+  top: -3px;
+  left: 25px;
+}
+
+.input::placeholder {
+  text-transform: uppercase;
+}
+
+.input:not(:placeholder-shown) + .label {
+  display: block;
+}
+
+.input:focus {
+  letter-spacing: .15em;
+  color: var(--clr);
+  box-shadow: 0 0 35px var(--clr), inset 0px 0px 0px 1px var(--clr);
+}
+
+.align-column {
+  flex-direction: column;
+  display: flex;
+}
+
+.align-row {
+  flex-direction: row;
+  display: flex;
+}
+
+/*# sourceMappingURL=index.css.map */
