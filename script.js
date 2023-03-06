@@ -1,5 +1,7 @@
 "use strict";
 
+import "./style.css";
+
 let touch_device = (('ontouchstart' in window) ||
 	(navigator.maxTouchPoints > 0) ||
 	(navigator.msMaxTouchPoints > 0));

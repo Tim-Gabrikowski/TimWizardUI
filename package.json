@@ -1,0 +1,24 @@
+{
+  "name": "timwizardui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/package.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tim-Gabrikowski/TimWizardUI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tim-Gabrikowski/TimWizardUI/issues"
+  },
+  "homepage": "https://github.com/Tim-Gabrikowski/TimWizardUI#readme",
+  "dependencies": {
+    "parcel": "^2.8.3"
+  }
+}
