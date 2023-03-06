@@ -27,5 +27,12 @@
   },
   "staticFiles": {
     "staticPath": "./static"
+  },
+  "global": "build/script.js",
+  "targets": {
+    "global": {
+      "context": "browser",
+      "outputFormat": "global"
+    }
   }
 }
