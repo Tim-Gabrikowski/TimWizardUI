@@ -2,6 +2,7 @@ function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
 }
 
+$parcel$export(module.exports, "page_create", () => $650934f729b0bf11$export$418da982607c7687);
 $parcel$export(module.exports, "header_create", () => $650934f729b0bf11$export$2e2f1a8b6d4607c2);
 $parcel$export(module.exports, "page_show", () => $650934f729b0bf11$export$49c4650fa4053fe0);
 $parcel$export(module.exports, "layout_create", () => $650934f729b0bf11$export$b9180922d13aefb4);
@@ -12,7 +13,7 @@ $parcel$export(module.exports, "field_create", () => $650934f729b0bf11$export$8d
 $parcel$export(module.exports, "chart_create", () => $650934f729b0bf11$export$e05cb23dc8ea8a7);
 "use strict";
 let $650934f729b0bf11$var$touch_device = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-/* PAGE */ function $650934f729b0bf11$var$page_create(options) {
+function $650934f729b0bf11$export$418da982607c7687(options) {
     let page = document.createElement("div");
     $650934f729b0bf11$var$_handle_id(page, options);
     $650934f729b0bf11$var$_handle_class(page, "page " + (options.center ? "center " : ""), options);

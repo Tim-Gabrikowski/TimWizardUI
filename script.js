@@ -5,7 +5,7 @@ let touch_device = (('ontouchstart' in window) ||
 	(navigator.msMaxTouchPoints > 0));
 
 /* PAGE */
-function page_create(options) {
+export function page_create(options) {
 	let page = document.createElement("div");
 	_handle_id(page, options);
 	_handle_class(page, "page " + (options.center ? "center " : ""), options);
