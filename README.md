@@ -9,6 +9,7 @@
   - schachtelbar
 - links (in Text)
 - Bilder / Icons
+- JSDoc?
 
 
 ## Nutzung
