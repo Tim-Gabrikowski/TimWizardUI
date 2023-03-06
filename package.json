@@ -1,9 +1,8 @@
-
 {
   "name": "timwizardui",
   "version": "1.0.0",
   "description": "",
-  "main": "build/index.js",
+  "main": "dist/package.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build script.js"
