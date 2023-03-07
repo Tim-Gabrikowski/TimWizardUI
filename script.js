@@ -132,8 +132,16 @@ function field_create(options) {
 	label.className = "label";
 	_handle_color(label, options);
 
+	let error = document.createElement("span");
+	error.innerHTML = "validation failed";
+	error.className = "error";
+	error.style.display = "none";
+	_handle_color(error, options);
+
 	container.appendChild(input);
 	container.appendChild(label);
+	container.appendChild(error);
+
 	container.set = function(new_text) {
 		this.children[0].value = new_text;
 	}
@@ -144,23 +152,34 @@ function field_create(options) {
 	container.valid = function () {
 		var value = this.children[0].value;
 		let valid = true;
+		let errors = []
 		if(options.validator == null || options.validator == undefined){
 			return true;
 		}
 		if(options.validator.minLength){
 			if(value.length < options.validator.minLength){
 				valid = false;
+				errors.push("Min length is " + options.validator.minLength);
 			}
 		}
 		if(options.validator.maxLength){
 			if(value.length > options.validator.maxLength){
 				valid = false;
+				errors.push("Max length is " + options.validator.maxLength);
 			}
 		}
 		if(options.validator.required){
 			if(!value){
 				valid = false;
+				errors.push("Field is required");
 			}
+		}
+		if(!valid){
+			error.style.display = "block";
+			let errorString = errors.join("<br>");
+			error.innerHTML = errorString;
+		} else {
+			error.style.display = "none";
 		}
 		return valid;
 	}

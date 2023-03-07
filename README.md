@@ -126,6 +126,8 @@ input.get();                        // Value des Input-Elements bekommen
 input.valid();                      // => true | false
 ```
 
+If you specified validators and call the `input.valid()` method on an invalid input, an error message will appear.
+
 ### Layout
 
 Layout element zum anordnet und sortieren von Elementen.
