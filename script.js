@@ -141,6 +141,29 @@ function field_create(options) {
 	container.get = function() {
 		return this.children[0].value;
 	}
+	container.valid = function () {
+		var value = this.children[0].value;
+		let valid = true;
+		if(options.validator == null || options.validator == undefined){
+			return true;
+		}
+		if(options.validator.minLength){
+			if(value.length < options.validator.minLength){
+				valid = false;
+			}
+		}
+		if(options.validator.maxLength){
+			if(value.length > options.validator.maxLength){
+				valid = false;
+			}
+		}
+		if(options.validator.required){
+			if(!value){
+				valid = false;
+			}
+		}
+		return valid;
+	}
 
 	return container;
 }

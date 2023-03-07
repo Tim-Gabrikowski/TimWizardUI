@@ -115,9 +115,15 @@ let input = field_create({
     color: "",                      // CSS-Colordefinition für das Element
     defaultValue: "default",        // Default value for the Input
     placeholder: "Type something",  // placeholder
+    validator: {                    // validators
+		required: true,             // is the field required?
+        minLength: 4,               // minimale Länge des inputs
+        maxLength: 8,               // maximale Länge des inputs
+    }
 });
 input.change("new Value");          // Value des Input-Elements setzen
 input.get();                        // Value des Input-Elements bekommen
+input.valid();                      // => true | false
 ```
 
 ### Layout
