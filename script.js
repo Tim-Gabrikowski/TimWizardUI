@@ -16,9 +16,7 @@ function page_create(options) {
 	}
 
 	_handle_children(page, options);
-	if(!options.append == false) {
-		document.body.appendChild(page);
-	}
+	document.body.appendChild(page);
 	return page;
 }
 
