@@ -52,9 +52,9 @@ Eine einfache Überschrift.
 
 ```javascript
 let header = header_create({
-	text: "Ich bin eine Überschrift",       // Der Text, der angezeigt wird
-	id: "test_header",                      // die Id des Elements
-	classes: "bold green",                  // CSS-Klassen zum anhängen
+    text: "Ich bin eine Überschrift",       // Der Text, der angezeigt wird
+    id: "test_header",                      // die Id des Elements
+    classes: "bold green",                  // CSS-Klassen zum anhängen
 });
 header.change("new Header")                 // Überschrift ändern
 ```
@@ -66,8 +66,8 @@ Ein sehr schön gestylter Button.
 ```javascript
 let button = button_create({
     label: "Ich bin ein Button",            // der Text auf dem Button
-	id: "test_header",                      // die Id des Elements 
-	classes: "bold green",                  // CSS-Klassen zum anhängen
+    id: "test_header",                      // die Id des Elements 
+    classes: "bold green",                  // CSS-Klassen zum anhängen
     color: "#ffffff",                       // CSS-Colordefinition für das Element
     onclick: () => {                        // Die Funktion die beim drücken des Buttons aufgerufen wird.
 		alert("CLICK!");
@@ -116,7 +116,7 @@ let input = field_create({
     defaultValue: "default",        // Default value for the Input
     placeholder: "Type something",  // placeholder
     validator: {                    // validators
-		required: true,             // is the field required?
+	required: true,             // is the field required?
         minLength: 4,               // minimale Länge des inputs
         maxLength: 8,               // maximale Länge des inputs
     }
