@@ -17,13 +17,22 @@ function page_create(options) {
 
 	_handle_children(page, options);
 	document.body.appendChild(page);
+	page.show = function () {
+		page.style.display = "flex";
+	}
+	page.hide = function () {
+		page.style.display = "none";
+		if(options.destroyOnHide === true){
+			page.remove();
+		}
+	}
 	return page;
 }
 
 function page_show(current) {
 	let pages = document.getElementsByClassName("page");
 	for(let page of pages) {
-		page.style.display = (page == current) ? "flex" : "none";
+		(page == current) ? page.show() : page.hide();
 	}
 }
 
