@@ -23,7 +23,7 @@ On every plugin Doc you will find the import of all functions.
 This is an simple and styled Audioplayer. It can play audiofiles from file / Url or other sources. It also uses the MediaSession API.
 
 ```javascript
-import { audioplayer_create } from "https://tim-gabrikowski.github.io/TimWizzardUI/plugins/audioplayer/script.js";
+import { audioplayer_create } from "https://tim-gabrikowski.github.io/TimWizardUI/plugins/audioplayer/script.js";
 
 let audioplayer = audioplayer_create({
     id: "audioplayer",
