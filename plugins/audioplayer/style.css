@@ -26,7 +26,7 @@
 
 .audiolabel {
 	position: absolute;
-	top: -18px;
+	top: -15px;
 	left: 5%;
 	padding: 0 5px;
 	margin: 0;
@@ -36,7 +36,9 @@
 	border-radius: 5px;
 	color: white;
 	max-width: 80%;
-	overflow-x: hidden;
+	overflow: hidden;
+	white-space: nowrap;
+	font-size: 20px;
 }
 .play-icon {
 	margin: 20px 2.5% 10px 2.5%;
