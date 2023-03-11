@@ -11,16 +11,20 @@
 	<body>
 		<script type="module">
 			import { audioplayer_create } from "./script.js";
-			document.body.appendChild(
-				audioplayer_create({
-					src: "http://192.168.0.187:3010/play/dQw4w9WgXcQ",
-					color: "#f00",
-					songData: {
-						title: "I am Gay",
-						artist: "Jon",
-					},
-				})
-			);
+			let player = audioplayer_create({
+				src: "http://192.168.0.187:3010/play/dQw4w9WgXcQ",
+				color: "#f00",
+				songData: {
+					title: "I am Gay",
+					artist: "Jon",
+				},
+			});
+			player.change({
+				src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+				title: "SoundHelix Song 2",
+				artist: "T. Schürger",
+			});
+			document.body.appendChild(player);
 		</script>
 	</body>
 </html>

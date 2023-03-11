@@ -293,5 +293,19 @@ export function audioplayer_create(options) {
 	audioPlayerContainer.appendChild(volumeSlider);
 	audioPlayerContainer.appendChild(muteIconContainer);
 
+	audioPlayerContainer.changeSource = function (newSrc) {
+		audio.src = newSrc;
+	};
+	audioPlayerContainer.change = function (newSong) {
+		audio.src = newSong.src;
+		navigator.mediaSession.metadata = new MediaMetadata({
+			title: newSong.title || "unknown title",
+			artist: newSong.artist || "unknown artist",
+		});
+		infoText.innerText = newSong.artist || "unknown artist";
+		infoText.innerText += " - ";
+		infoText.innerText += newSong.title || "unknown songtitle";
+	};
+
 	return audioPlayerContainer;
 }
