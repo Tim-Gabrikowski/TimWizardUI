@@ -34,9 +34,9 @@ export function audioplayer_create(options) {
 	infoText.style.setProperty("--clr", options.color || "#FFFFFF");
 
 	if (options.songData !== undefined) {
-		infoText.innerText = options.songData.artist || "unknown artist";
-		infoText.innerText += " - ";
-		infoText.innerText += options.songData.title || "unknown songtitle";
+		infoText.innerText = `${options.songData.artist || "unknown artist"} - ${
+			options.songData.title || "unknown title"
+		}`;
 	}
 
 	if (options.src == undefined) {
@@ -306,9 +306,9 @@ export function audioplayer_create(options) {
 			title: newSong.title || "unknown title",
 			artist: newSong.artist || "unknown artist",
 		});
-		infoText.innerText = newSong.artist || "unknown artist";
-		infoText.innerText += " - ";
-		infoText.innerText += newSong.title || "unknown songtitle";
+		infoText.innerText = `${newSong.artist || "unknown artist"} - ${
+			newSong.title || "unknown title"
+		}`;
 		playState = "play";
 		playIconContainer.dispatchEvent(new Event("click"));
 		audio.play();
