@@ -39,6 +39,10 @@ export function audioplayer_create(options) {
 		infoText.innerText += options.songData.title || "unknown songtitle";
 	}
 
+	if (options.src == undefined) {
+		infoText.innerText = "no song selected";
+	}
+
 	const seekSlider = document.createElement("input");
 	seekSlider.className = "seek-slider";
 	seekSlider.type = "range";
