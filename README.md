@@ -13,6 +13,9 @@ Find this doc [here](https://tim-gabrikowski.github.io/TimWizardUI/):
 - Bilder / Icons
 - JSDoc?
 
+## Plugins
+
+This Files are the basic framework. It can be expanded with plugins. See here for [a list of plugins](./plugins/README.md).
 
 ## Nutzung
 
@@ -86,7 +89,7 @@ let page = page_create({
     id: "test_page",                            // die Id des Elements
     title: "New generated page",                // generate a Header at the top of the page if provided
     center: false,                              // Center the page vertically
-    destroyOnHide: true                         // (default: false) => Delete the page on Hide from DOM    
+    destroyOnHide: true,                        // (default: false) => Delete the page on Hide from DOM    
     style: {                                    // style Attributes (ALL AVAILABLE CSS ATTRIBUTES)
         height: "500px",                        // (CSS-Property height)
         width: "50%"                            // (CSS-Property width)

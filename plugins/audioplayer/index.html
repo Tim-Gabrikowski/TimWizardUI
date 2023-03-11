@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Audio Player</title>
+		<style>
+			body {
+				background-color: #1e1e1e;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="module">
+			import { audioplayer_create } from "./script.js";
+			document.body.appendChild(
+				audioplayer_create({
+					src: "http://192.168.0.187:3010/play/dQw4w9WgXcQ",
+					color: "#f00",
+					songData: {
+						title: "I am Gay",
+						artist: "Jon",
+					},
+				})
+			);
+		</script>
+	</body>
+</html>
