@@ -309,6 +309,8 @@ export function audioplayer_create(options) {
 		infoText.innerText = newSong.artist || "unknown artist";
 		infoText.innerText += " - ";
 		infoText.innerText += newSong.title || "unknown songtitle";
+		playState = "play";
+		playIconContainer.dispatchEvent(new Event("click"));
 		audio.play();
 	};
 
