@@ -1,10 +1,9 @@
-/* Implementation of the presentation of the audio player */
-import lottieWeb from "https://cdn.skypack.dev/lottie-web";
-import sheet from "./style.css";
-document.adoptedStyleSheets = [sheet];
+const PLAY_ICON = "icon-play";
+const PAUSED_ICON = "icon-paused";
+const MUTED_ICON = "icon-muted";
+const UNMUTED_ICON = "icon-unmuted";
 
 /**
- *
  * @param {object} options Das Optionsobjekt
  * @param {string} options.id ID des Elements
  * @param {string} options.className Klassen zum anhängen
@@ -14,12 +13,16 @@ document.adoptedStyleSheets = [sheet];
  * @param {string} options.songData.title Titel des abgespielten Songs
  * @param {string} options.songData.artist Künstler/Sänger des Titels
  */
-export function audioplayer_create(options) {
+function audioplayer_create(options) {
 	if (options == undefined || options == null) return;
 
 	const playIconContainer = document.createElement("button");
 	playIconContainer.className = "play-icon ap-btn";
 	playIconContainer.style.setProperty("--clr", options.color || "#FFFFFF");
+
+	const playIcon = document.createElement("img");
+	playIcon.className = PLAY_ICON;
+	playIconContainer.appendChild(playIcon);
 
 	const audioPlayerContainer = document.createElement("div");
 	audioPlayerContainer.className = "audio-player-container";
@@ -61,38 +64,22 @@ export function audioplayer_create(options) {
 	muteIconContainer.className = "mute-icon ap-btn";
 	muteIconContainer.style.setProperty("--clr", options.color || "#FFFFFF");
 
+	const muteIcon = document.createElement("img");
+	muteIcon.className = UNMUTED_ICON;
+	muteIconContainer.appendChild(muteIcon);
+
 	let playState = "play";
 	let muteState = "unmute";
-
-	const playAnimation = lottieWeb.loadAnimation({
-		container: playIconContainer,
-		path: "https://maxst.icons8.com/vue-static/landings/animated-icons/icons/pause/pause.json",
-		renderer: "svg",
-		loop: false,
-		autoplay: false,
-		name: "Play Animation",
-	});
-
-	const muteAnimation = lottieWeb.loadAnimation({
-		container: muteIconContainer,
-		path: "https://maxst.icons8.com/vue-static/landings/animated-icons/icons/mute/mute.json",
-		renderer: "svg",
-		loop: false,
-		autoplay: false,
-		name: "Mute Animation",
-	});
-
-	playAnimation.goToAndStop(14, true);
 
 	playIconContainer.addEventListener("click", () => {
 		if (playState === "play") {
 			audio.play();
-			playAnimation.playSegments([14, 27], true);
+			playIcon.className = PAUSED_ICON;
 			requestAnimationFrame(whilePlaying);
 			playState = "pause";
 		} else {
 			audio.pause();
-			playAnimation.playSegments([0, 14], true);
+			playIcon.className = PLAY_ICON;
 			cancelAnimationFrame(raf);
 			playState = "play";
 		}
@@ -100,12 +87,12 @@ export function audioplayer_create(options) {
 
 	muteIconContainer.addEventListener("click", () => {
 		if (muteState === "unmute") {
-			muteAnimation.playSegments([0, 15], true);
 			audio.muted = true;
+			muteIcon.className = MUTED_ICON;
 			muteState = "mute";
 		} else {
-			muteAnimation.playSegments([15, 25], true);
 			audio.muted = false;
+			muteIcon.className = UNMUTED_ICON;
 			muteState = "unmute";
 		}
 	});
@@ -167,15 +154,7 @@ export function audioplayer_create(options) {
 		seekSlider.max = Math.floor(audio.duration);
 	};
 
-	const displayBufferedAmount = () => {
-		const bufferedAmount = Math.floor(
-			audio.buffered.end(audio.buffered.length - 1)
-		);
-		audioPlayerContainer.style.setProperty(
-			"--buffered-width",
-			`${(bufferedAmount / seekSlider.max) * 100}%`
-		);
-	};
+	const displayBufferedAmount = () => {};
 
 	const whilePlaying = () => {
 		seekSlider.value = Math.floor(audio.currentTime);

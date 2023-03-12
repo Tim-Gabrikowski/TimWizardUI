@@ -24,6 +24,34 @@
 	transform: translate(-50%, 0);
 }
 
+.icon-play {
+	width: 40px;
+	height: 40px;
+	background-color: var(--clr);
+	-webkit-mask: url(icons/play.svg) no-repeat center;
+	mask: url(icons/play.svg) no-repeat center;
+}
+.icon-paused {
+	width: 40px;
+	height: 40px;
+	background-color: var(--clr);
+	-webkit-mask: url(icons/paused.svg) no-repeat center;
+	mask: url(icons/paused.svg) no-repeat center;
+}
+.icon-muted {
+	width: 40px;
+	height: 40px;
+	background-color: var(--clr);
+	-webkit-mask: url(icons/muted.svg) no-repeat center;
+	mask: url(icons/muted.svg) no-repeat center;
+}
+.icon-unmuted {
+	width: 40px;
+	height: 40px;
+	background-color: var(--clr);
+	-webkit-mask: url(icons/unmuted.svg) no-repeat center;
+	mask: url(icons/unmuted.svg) no-repeat center;
+}
 .audiolabel {
 	position: absolute;
 	top: -15px;

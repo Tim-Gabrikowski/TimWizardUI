@@ -8,29 +8,27 @@ This are fully functional components for the framework, that are not used very o
 
 ## Plugins
 
-The Documentation of the plugins. You can easily import them via the script. Just make sure your javascript is a module:
+The Documentation of the plugins. You can easily import them via the script and add the stylesheet.
 
-```html
-<script type="module">
-	...
-</script>
-```
-
-And then import the function(s) with the ES-Import like this:
-
-```javascript
-import { example_create } from "plugins/example/script.js";
-```
-
-On every plugin Doc you will find the import of all functions.
+On every plugin Doc you will find the import of all functions ans sheets.
 
 ### Audioplayer
 
 This is an simple and styled Audioplayer. It can play audiofiles from file / Url or other sources. It also uses the MediaSession API.
 
-```javascript
-import { audioplayer_create } from "https://tim-gabrikowski.github.io/TimWizardUI/plugins/audioplayer/script.js";
+```html
+<link
+	rel="stylesheet"
+	href="https://tim-gabrikowski.github.io/TimWizardUI/plugins/audioplayer/style.css"
+	type="text/css"
+/>
+<script
+	type="text/javascript"
+	src="https://tim-gabrikowski.github.io/TimWizardUI/plugins/audioplayer/script.js"
+></script>
+```
 
+```javascript
 let audioplayer = audioplayer_create({
 	id: "audioplayer",
 	className: "audioplayer",
