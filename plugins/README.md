@@ -37,11 +37,19 @@ let audioplayer = audioplayer_create({
 		title: "SoundHelix Song 1",
 		artist: "T. Schürger",
 	},
+	onended: () => {
+		console.log("playback ended!");
+	},
 });
 // Change the song to play other Song:
 audioplayer.change({
 	src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
 	title: "SoundHelix Song 2",
 	artist: "T. Schürger",
+	silent: true, // (true) => dont autoplay (false | undefined) => autoplay
+	// overrides the initial set onend function:
+	onended: () => {
+		console.log("playback ended! new function");
+	},
 });
 ```

@@ -288,10 +288,19 @@ function audioplayer_create(options) {
 		infoText.innerText = `${newSong.artist || "unknown artist"} - ${
 			newSong.title || "unknown title"
 		}`;
-		playState = "play";
-		playIconContainer.dispatchEvent(new Event("click"));
-		audio.play();
+		if (!newSong.silent) {
+			playState = "play";
+			playIconContainer.dispatchEvent(new Event("click"));
+			audio.play();
+		}
+		if (newSong.onended !== undefined) {
+			audio.onended = newSong.onended;
+		}
 	};
+
+	if (options.onended !== undefined) {
+		audio.onended = options.onended;
+	}
 
 	return audioPlayerContainer;
 }

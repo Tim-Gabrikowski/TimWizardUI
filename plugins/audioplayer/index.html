@@ -19,11 +19,15 @@
 					title: "I am Gay",
 					artist: "Jon",
 				},
+				onended: () => {
+					console.log("playback ended!");
+				},
 			});
 			player.change({
 				src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
 				title: "SoundHelix Song 2",
 				artist: "T. Schürger",
+				silent: true,
 			});
 			document.body.appendChild(player);
 		</script>
