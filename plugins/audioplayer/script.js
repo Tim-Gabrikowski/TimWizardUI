@@ -217,12 +217,10 @@ function audioplayer_create(options) {
 		navigator.mediaSession.setActionHandler("play", () => {
 			if (playState === "play") {
 				audio.play();
-				playAnimation.playSegments([14, 27], true);
 				requestAnimationFrame(whilePlaying);
 				playState = "pause";
 			} else {
 				audio.pause();
-				playAnimation.playSegments([0, 14], true);
 				cancelAnimationFrame(raf);
 				playState = "play";
 			}
@@ -230,12 +228,10 @@ function audioplayer_create(options) {
 		navigator.mediaSession.setActionHandler("pause", () => {
 			if (playState === "play") {
 				audio.play();
-				playAnimation.playSegments([14, 27], true);
 				requestAnimationFrame(whilePlaying);
 				playState = "pause";
 			} else {
 				audio.pause();
-				playAnimation.playSegments([0, 14], true);
 				cancelAnimationFrame(raf);
 				playState = "play";
 			}
@@ -259,7 +255,6 @@ function audioplayer_create(options) {
 			audioPlayerContainer.style.setProperty("--seek-before-width", "0%");
 			currentTimeContainer.textContent = "0:00";
 			if (playState === "pause") {
-				playAnimation.playSegments([0, 14], true);
 				cancelAnimationFrame(raf);
 				playState = "play";
 			}
