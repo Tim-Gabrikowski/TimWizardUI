@@ -1,6 +1,6 @@
 /* Implementation of the presentation of the audio player */
 import lottieWeb from "https://cdn.skypack.dev/lottie-web";
-import sheet from "./style.css" assert { type: "css" };
+import sheet from "./style.css";
 document.adoptedStyleSheets = [sheet];
 
 /**
