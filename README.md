@@ -85,6 +85,7 @@ let button = button_create({
 		// Die Funktion die beim drücken des Buttons aufgerufen wird.
 		alert("CLICK!");
 	},
+	plain: false // Button ohne fancy Border
 });
 button.change("New Label"); // Das Label ändern
 button.clone("new_id"); // Eine Kopie erstellen
@@ -111,13 +112,14 @@ let page = page_create({
 		// array of child elements from top to bottom
 		create_text({ text: "Ich bin ein Text" }), // generator function of child element
 	],
+	onshow: function() {} // Eventhandler when the page is shown
 });
 ```
 
 Um nur einen bestimmten page anzuzeigen die folgende Funktion nutzen:
 
 ```javascript
-page_show(page);
+page.show();
 ```
 
 ### Input
@@ -181,3 +183,14 @@ let image = image_create({
 	},
 });
 ```
+
+### MessageBox
+
+```javascript
+let msg = messagebox_create({
+	id: "test_msg", // Die ID des Elements
+	children: [] // Child Elemente
+});
+```
+
+Zum Anzeigen/Verstecken: `msg.show()` und `msg.hide()`
