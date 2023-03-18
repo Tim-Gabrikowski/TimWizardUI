@@ -22,22 +22,27 @@ function page_create(options) {
 	page.onshow = options.onshow || null;
 	_handle_children(page, options);
 	document.body.appendChild(page);
-	return page;
-}
-
-function page_show(current) {
-	let pages = document.getElementsByClassName("page");
-	for(let page of pages) {
-		if(page == current) {
-			page.style.display = "flex";
-			if(page.onshow) {
-				page.onshow();
+	page.show = function () {
+		let pages = document.getElementsByClassName("page");
+		for(let p of pages) {
+			if(page == current) {
+				page.style.display = "flex";
+				if(page.onshow) {
+					page.onshow();
+				}
+			}
+			else {
+				p.style.display = "none";
+				if(options.destroyOnHide === true) {
+					p.remove();
+				}
 			}
 		}
-		else {
-			page.style.display = "none";
-		}
+
+		page.style.display = "flex";
 	}
+
+	return page;
 }
 
 /* MESSAGE BOX */
@@ -160,6 +165,7 @@ function field_create(options) {
 	_handle_class(input, "input", options);
 	input.value = options.value || "";
 	input.placeholder = options.placeholder || "";
+	input.type = options.type || "text";
 	_handle_color(input, options);
 
 	let label = document.createElement("label");
@@ -167,14 +173,56 @@ function field_create(options) {
 	label.className = "label";
 	_handle_color(label, options);
 
+	let error = document.createElement("span");
+	error.innerHTML = "validation failed";
+	error.className = "error";
+	error.style.display = "none";
+	_handle_color(error, options);
+
 	container.appendChild(input);
 	container.appendChild(label);
+	container.appendChild(error);
+
 	container.set = function(new_text) {
 		this.children[0].value = new_text;
 	}
 
 	container.get = function() {
 		return this.children[0].value;
+	}
+	container.valid = function () {
+		var value = this.children[0].value;
+		let valid = true;
+		let errors = []
+		if(options.validator == null || options.validator == undefined){
+			return true;
+		}
+		if(options.validator.minLength){
+			if(value.length < options.validator.minLength){
+				valid = false;
+				errors.push("Min length is " + options.validator.minLength);
+			}
+		}
+		if(options.validator.maxLength){
+			if(value.length > options.validator.maxLength){
+				valid = false;
+				errors.push("Max length is " + options.validator.maxLength);
+			}
+		}
+		if(options.validator.required){
+			if(!value){
+				valid = false;
+				errors.push("Field is required");
+			}
+		}
+		if(!valid){
+			error.style.display = "block";
+			let errorString = errors.join("<br>");
+			error.innerHTML = errorString;
+		} else {
+			error.style.display = "none";
+		}
+		return valid;
 	}
 
 	return container;
