@@ -11,7 +11,8 @@ function page_create(options) {
 	_handle_class(page, "page " + (options.center ? "center " : ""), options);
 	_handle_styles(page, options);
 	page.style.flexDirection = options.type || "column";
-	if(options.title) {
+	
+  if(options.title !== undefined) {
 		let header = header_create({ text: options.title });
 		options.children.unshift(header);
 		page.changeTitle = function(new_text) {
@@ -25,7 +26,8 @@ function page_create(options) {
 	page.show = function () {
 		let pages = document.getElementsByClassName("page");
 		for(let p of pages) {
-			if(page == current) {
+			if(p == page) {
+
 				page.style.display = "flex";
 				if(page.onshow) {
 					page.onshow();
@@ -82,7 +84,7 @@ function layout_create(options) {
 /* HEADER */
 function header_create(options) {
 	let header = document.createElement("p");
-	header.innerText = options.text || "HEADER";
+	header.innerText = options.text || "";
 	_handle_id(header, options);
 	_handle_class(header, "header", options);
 	_handle_styles(header, options);
