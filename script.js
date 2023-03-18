@@ -12,9 +12,14 @@ function page_create(options) {
 	_handle_styles(page, options);
 	page.style.flexDirection = options.type || "column";
 	if(options.title) {
-		options.children.unshift(header_create({ text: options.title }));
+		let header = header_create({ text: options.title });
+		options.children.unshift(header);
+		page.changeTitle = function(new_text) {
+			header.change(new_text);
+		}
 	}
 
+	page.onshow = options.onshow || null;
 	_handle_children(page, options);
 	document.body.appendChild(page);
 	return page;
@@ -23,8 +28,36 @@ function page_create(options) {
 function page_show(current) {
 	let pages = document.getElementsByClassName("page");
 	for(let page of pages) {
-		page.style.display = (page == current) ? "flex" : "none";
+		if(page == current) {
+			page.style.display = "flex";
+			if(page.onshow) {
+				page.onshow();
+			}
+		}
+		else {
+			page.style.display = "none";
+		}
 	}
+}
+
+/* MESSAGE BOX */
+function messagebox_create(options) {
+	let overlay = document.createElement("div");
+	overlay.className = "overlay center";
+	let messagebox = document.createElement("div");
+	messagebox.className = "messagebox center";
+	_handle_children(messagebox, options);
+	overlay.appendChild(messagebox);
+	document.body.appendChild(overlay);
+	return overlay;
+}
+
+function messagebox_hide(overlay) {
+	overlay.style.display = "none";
+}
+
+function messagebox_show(overlay) {
+	overlay.style.display = "flex";
 }
 
 /* LAYOUT */
@@ -35,7 +68,6 @@ function layout_create(options) {
 	layout.style.flexDirection = options.type || "column";
 	_handle_styles(layout, options);
 	_handle_children(layout, options);
-
 	_handle_border(layout, options);
 	_handle_color(layout, options);
 	return layout;
@@ -58,7 +90,10 @@ function header_create(options) {
 /* TEXT */
 function text_create(options) {
 	let text = document.createElement("div");
-	text.innerText = options.text || "TEXT";
+	if(options.text) {
+		text.innerText = options.text;
+	}
+
 	_handle_id(text, options);
 	_handle_class(text, "text", options);
 	_handle_styles(text, options);
@@ -84,9 +119,10 @@ function image_create(options) {
 function button_create(options) {
 	let button = document.createElement("button");
 	_handle_id(button, options);
-	_handle_class(button, "button", options);
+	_handle_class(button, options.plain ? "button-plain" : "button", options);
+
 	if(options.label) {
-		button.innerText = options.label || "BUTTON";
+		button.innerText = options.label;
 	}
 	else {
 		_handle_children(button, options);
@@ -184,7 +220,7 @@ function _handle_children(element, options) {
 	}
 }
 function _handle_border(element, options) {
-	if(options.border){
+	if(options.border) {
 		element.className += " border"
 	}
 }
