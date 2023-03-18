@@ -11,7 +11,8 @@ function page_create(options) {
 	_handle_class(page, "page " + (options.center ? "center " : ""), options);
 	_handle_styles(page, options);
 	page.style.flexDirection = options.type || "column";
-	if(options.title !== undefined) {
+	
+  if(options.title !== undefined) {
 		let header = header_create({ text: options.title });
 		options.children.unshift(header);
 		page.changeTitle = function(new_text) {
@@ -26,6 +27,7 @@ function page_create(options) {
 		let pages = document.getElementsByClassName("page");
 		for(let p of pages) {
 			if(p == page) {
+
 				page.style.display = "flex";
 				if(page.onshow) {
 					page.onshow();
