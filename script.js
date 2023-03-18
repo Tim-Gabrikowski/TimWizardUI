@@ -54,15 +54,16 @@ function messagebox_create(options) {
 	_handle_children(messagebox, options);
 	overlay.appendChild(messagebox);
 	document.body.appendChild(overlay);
+
+	overlay.show = function() {
+		overlay.style.display = "flex";
+	};
+
+	overlay.hide = function() {
+		overlay.style.display = "none";
+	};
+
 	return overlay;
-}
-
-function messagebox_hide(overlay) {
-	overlay.style.display = "none";
-}
-
-function messagebox_show(overlay) {
-	overlay.style.display = "flex";
 }
 
 /* LAYOUT */
