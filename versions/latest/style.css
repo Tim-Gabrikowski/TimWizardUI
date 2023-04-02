@@ -11,6 +11,7 @@
 /* GENERAL */
 * {
 	font-family: 'Ubuntu', sans-serif;
+	--clr: #ffffff;
 }
 
 html, body {
