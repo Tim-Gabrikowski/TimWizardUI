@@ -13,6 +13,16 @@ Find this doc [here](https://tim-gabrikowski.github.io/TimWizardUI/):
 - Bilder / Icons
 - JSDoc?
 
+## Publish
+
+To publish a new verison call
+
+```bash
+node publish [version]
+```
+
+this copies the files to the versions subdir
+
 ## Plugins
 
 This Files are the basic framework. It can be expanded with plugins. See here for [a list of plugins](./plugins/README.md).
@@ -24,12 +34,12 @@ Add the following to your HTML-file.
 ```html
 <link
 	rel="stylesheet"
-	href="https://tim-gabrikowski.github.io/TimWizardUI/style.css"
+	href="https://tim-gabrikowski.github.io/TimWizardUI/versions/[version]/style.css"
 	type="text/css"
 />
 <script
 	type="text/javascript"
-	src="https://tim-gabrikowski.github.io/TimWizardUI/script.js"
+	src="https://tim-gabrikowski.github.io/TimWizardUI/versions/[version]/script.js"
 ></script>
 ```
 
@@ -85,7 +95,7 @@ let button = button_create({
 		// Die Funktion die beim drücken des Buttons aufgerufen wird.
 		alert("CLICK!");
 	},
-	plain: false // Button ohne fancy Border
+	plain: false, // Button ohne fancy Border
 });
 button.change("New Label"); // Das Label ändern
 button.clone("new_id"); // Eine Kopie erstellen
@@ -112,7 +122,7 @@ let page = page_create({
 		// array of child elements from top to bottom
 		create_text({ text: "Ich bin ein Text" }), // generator function of child element
 	],
-	onshow: function() {} // Eventhandler when the page is shown
+	onshow: function () {}, // Eventhandler when the page is shown
 });
 ```
 
@@ -189,7 +199,7 @@ let image = image_create({
 ```javascript
 let msg = messagebox_create({
 	id: "test_msg", // Die ID des Elements
-	children: [] // Child Elemente
+	children: [], // Child Elemente
 });
 ```
 
