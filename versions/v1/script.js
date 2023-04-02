@@ -57,13 +57,7 @@ function messagebox_create(options) {
 	overlay.appendChild(messagebox);
 	document.body.appendChild(overlay);
 
-	overlay.show = function() {
-		overlay.style.display = "flex";
-	};
-
-	overlay.hide = function() {
-		overlay.style.display = "none";
-	};
+	_handle_show_hide(overlay);
 
 	return overlay;
 }
@@ -78,6 +72,7 @@ function layout_create(options) {
 	_handle_children(layout, options);
 	_handle_border(layout, options);
 	_handle_color(layout, options);
+	_handle_show_hide(layout);
 	return layout;
 }
 
@@ -91,6 +86,7 @@ function header_create(options) {
 	header.change = function(new_text) {
 		this.innerText = new_text;
 	}
+	_handle_show_hide(header, "block");
 
 	return header;
 }
@@ -108,7 +104,7 @@ function text_create(options) {
 	text.change = function(new_text) {
 		this.innerText = new_text;
 	}
-
+	_handle_show_hide(text, "block");
 	return text;
 }
 
@@ -120,6 +116,7 @@ function image_create(options) {
 	_handle_id(image, options);
 	_handle_class(image, "image", options);
 	_handle_styles(image, options);
+	_handle_show_hide(image, "block");
 	return image;
 }
 
@@ -138,6 +135,7 @@ function button_create(options) {
 
 	_handle_styles(button, options);
 	_handle_color(button, options);
+	_handle_show_hide(button, "block");
 	if(touch_device) {
 		if(options.onclick) {
 			button.onclick = function() {
@@ -170,6 +168,7 @@ function field_create(options) {
 	input.placeholder = options.placeholder || "";
 	input.type = options.type || "text";
 	_handle_color(input, options);
+	_handle_show_hide(input, "block");
 
 	let label = document.createElement("label");
 	label.innerHTML = input.placeholder;
@@ -239,6 +238,7 @@ function chart_create(options) {
 	_handle_id(chart, options);
 	_handle_class(chart, "chart", options);
 	_handle_styles(chart, options);
+	_handle_show_hide(chart, "block");
 	return chart;
 }
 
@@ -273,6 +273,14 @@ function _handle_children(element, options) {
 function _handle_border(element, options) {
 	if(options.border) {
 		element.className += " border"
+	}
+}
+function _handle_show_hide(element, defaultShow = "flex") {
+	element.show = function() {
+		element.style.display = defaultShow;
+	}
+	element.hide = function() {
+		element.style.display = "none";
 	}
 }
 
