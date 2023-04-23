@@ -11,12 +11,18 @@ function page_create(options) {
 	_handle_class(page, "page " + (options.center ? "center " : ""), options);
 	_handle_styles(page, options);
 	page.style.flexDirection = options.type || "column";
-	
-  if(options.title !== undefined) {
-		let header = header_create({ text: options.title });
+
+	if (options.title !== undefined) {
+		let header = header_create({text: options.title});
 		options.children.unshift(header);
-		page.changeTitle = function(new_text) {
+		page.changeTitle = function (new_text) {
 			header.change(new_text);
+		}
+	}
+
+	if (options.routing !== undefined) {
+		if (options.routing.router !== undefined && options.routing.route !== undefined) {
+			options.routing.router.addRoute(options.routing.route);
 		}
 	}
 
@@ -25,17 +31,16 @@ function page_create(options) {
 	document.body.appendChild(page);
 	page.show = function () {
 		let pages = document.getElementsByClassName("page");
-		for(let p of pages) {
-			if(p == page) {
+		for (let p of pages) {
+			if (p == page) {
 
 				page.style.display = "flex";
-				if(page.onshow) {
+				if (page.onshow) {
 					page.onshow();
 				}
-			}
-			else {
+			} else {
 				p.style.display = "none";
-				if(options.destroyOnHide === true) {
+				if (options.destroyOnHide === true) {
 					p.remove();
 				}
 			}
@@ -43,7 +48,6 @@ function page_create(options) {
 
 		page.style.display = "flex";
 	}
-
 	return page;
 }
 
@@ -56,7 +60,6 @@ function messagebox_create(options) {
 	_handle_children(messagebox, options);
 	overlay.appendChild(messagebox);
 	document.body.appendChild(overlay);
-
 	_handle_show_hide(overlay);
 
 	return overlay;
@@ -180,6 +183,7 @@ function field_create(options) {
 	error.className = "error";
 	error.style.display = "none";
 	_handle_color(error, options);
+	_handle_show_hide(error, "block");
 
 	container.appendChild(input);
 	container.appendChild(label);
@@ -195,29 +199,16 @@ function field_create(options) {
 	container.valid = function () {
 		var value = this.children[0].value;
 		let valid = true;
-		let errors = []
-		if(options.validator == null || options.validator == undefined){
-			return true;
+
+		if (options.validators !== undefined) {
+			options.validators.forEach(validator => {
+				if (!validator(value)) {
+					valid = false;
+				}
+			});
 		}
-		if(options.validator.minLength){
-			if(value.length < options.validator.minLength){
-				valid = false;
-				errors.push("Min length is " + options.validator.minLength);
-			}
-		}
-		if(options.validator.maxLength){
-			if(value.length > options.validator.maxLength){
-				valid = false;
-				errors.push("Max length is " + options.validator.maxLength);
-			}
-		}
-		if(options.validator.required){
-			if(!value){
-				valid = false;
-				errors.push("Field is required");
-			}
-		}
-		if(!valid){
+
+		if (!valid) {
 			error.style.display = "block";
 			let errorString = errors.join("<br>");
 			error.innerHTML = errorString;
@@ -228,6 +219,31 @@ function field_create(options) {
 	}
 
 	return container;
+}
+
+class Router {
+	constructor() {
+	}
+
+	setDefault(defaultPage) {
+		this.defaultPage = defaultPage;
+	}
+
+	routes = [];
+
+	default() {
+		if (this.defaultPage === undefined || this.defaultPage === null) return;
+		this.defaultPage.show();
+	}
+
+	addRoute(route, pageElement) {
+		this.routes.push({route: route, page: pageElement});
+	}
+
+	to(route) {
+		let page = this.routes.filter(r => r.route === route)[0];
+		page.show();
+	}
 }
 
 /* CHART */

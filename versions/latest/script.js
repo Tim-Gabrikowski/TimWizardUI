@@ -6,44 +6,48 @@ let touch_device = (('ontouchstart' in window) ||
 
 /* PAGE */
 function page_create(options) {
-	let page = document.createElement("div");
-	_handle_id(page, options);
-	_handle_class(page, "page " + (options.center ? "center " : ""), options);
-	_handle_styles(page, options);
-	page.style.flexDirection = options.type || "column";
-	
-  if(options.title !== undefined) {
-		let header = header_create({ text: options.title });
-		options.children.unshift(header);
-		page.changeTitle = function(new_text) {
-			header.change(new_text);
-		}
-	}
+    let page = document.createElement("div");
+    _handle_id(page, options);
+    _handle_class(page, "page " + (options.center ? "center " : ""), options);
+    _handle_styles(page, options);
+    page.style.flexDirection = options.type || "column";
 
-	page.onshow = options.onshow || null;
-	_handle_children(page, options);
-	document.body.appendChild(page);
-	page.show = function () {
-		let pages = document.getElementsByClassName("page");
-		for(let p of pages) {
-			if(p == page) {
+    if (options.title !== undefined) {
+        let header = header_create({text: options.title});
+        options.children.unshift(header);
+        page.changeTitle = function (new_text) {
+            header.change(new_text);
+        }
+    }
 
-				page.style.display = "flex";
-				if(page.onshow) {
-					page.onshow();
-				}
-			}
-			else {
-				p.style.display = "none";
-				if(options.destroyOnHide === true) {
-					p.remove();
-				}
-			}
+    if (options.routing !== undefined) {
+        if (options.routing.router !== undefined && options.routing.route !== undefined) {
+            options.routing.router.addRoute(options.routing.route);
+        }
+    }
+
+    page.onshow = options.onshow || null;
+    _handle_children(page, options);
+    document.body.appendChild(page);
+    page.show = function () {
+        let pages = document.getElementsByClassName("page");
+        for (let p of pages) {
+            if (p == page) {
+
+                page.style.display = "flex";
+                if (page.onshow) {
+                    page.onshow();
+                }
+            } else {
+                p.style.display = "none";
+                if (options.destroyOnHide === true) {
+                    p.remove();
+                }
+            }
 		}
 
 		page.style.display = "flex";
 	}
-
 	return page;
 }
 
@@ -56,7 +60,6 @@ function messagebox_create(options) {
 	_handle_children(messagebox, options);
 	overlay.appendChild(messagebox);
 	document.body.appendChild(overlay);
-
 	_handle_show_hide(overlay);
 
 	return overlay;
@@ -179,7 +182,8 @@ function field_create(options) {
 	error.innerHTML = "validation failed";
 	error.className = "error";
 	error.style.display = "none";
-	_handle_color(error, options);
+    _handle_color(error, options);
+    _handle_show_hide(error, "block");
 
 	container.appendChild(input);
 	container.appendChild(label);
@@ -193,52 +197,64 @@ function field_create(options) {
 		return this.children[0].value;
 	}
 	container.valid = function () {
-		var value = this.children[0].value;
-		let valid = true;
-		let errors = []
-		if(options.validator == null || options.validator == undefined){
-			return true;
-		}
-		if(options.validator.minLength){
-			if(value.length < options.validator.minLength){
-				valid = false;
-				errors.push("Min length is " + options.validator.minLength);
-			}
-		}
-		if(options.validator.maxLength){
-			if(value.length > options.validator.maxLength){
-				valid = false;
-				errors.push("Max length is " + options.validator.maxLength);
-			}
-		}
-		if(options.validator.required){
-			if(!value){
-				valid = false;
-				errors.push("Field is required");
-			}
-		}
-		if(!valid){
-			error.style.display = "block";
-			let errorString = errors.join("<br>");
-			error.innerHTML = errorString;
-		} else {
-			error.style.display = "none";
-		}
-		return valid;
-	}
+        var value = this.children[0].value;
+        let valid = true;
 
-	return container;
+        if (options.validators !== undefined) {
+            options.validators.forEach(validator => {
+                if (!validator(value)) {
+                    valid = false;
+                }
+            });
+        }
+
+        if (!valid) {
+            error.style.display = "block";
+            let errorString = errors.join("<br>");
+            error.innerHTML = errorString;
+        } else {
+            error.style.display = "none";
+        }
+        return valid;
+    }
+
+    return container;
+}
+
+class Router {
+    constructor() {
+    }
+
+    setDefault(defaultPage) {
+        this.defaultPage = defaultPage;
+    }
+
+    routes = [];
+
+    default() {
+        if (this.defaultPage === undefined || this.defaultPage === null) return;
+        this.defaultPage.show();
+    }
+
+    addRoute(route, pageElement) {
+        this.routes.push({route: route, page: pageElement});
+    }
+
+    to(route) {
+        let page = this.routes.filter(r => r.route === route)[0];
+        page.show();
+    }
 }
 
 /* CHART */
 function chart_create(options) {
-	let chart = document.createElement("canvas");
-	chart.height = options.height || 150;
-	chart.width = options.width || 300;
-	_handle_id(chart, options);
-	_handle_class(chart, "chart", options);
-	_handle_styles(chart, options);
-	_handle_show_hide(chart, "block");
+    let chart = document.createElement("canvas");
+    chart.height = options.height || 150;
+    chart.width = options.width || 300;
+    _handle_id(chart, options);
+    _handle_class(chart, "chart", options);
+    _handle_styles(chart, options);
+    _handle_show_hide(chart, "block");
 	return chart;
 }
 

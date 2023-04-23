@@ -27,7 +27,7 @@ this copies the files to the versions subdir
 
 This Files are the basic framework. It can be expanded with plugins. See here for [a list of plugins](./plugins/README.md).
 
-## Nutzung
+## Usage
 
 Add the following to your HTML-file.
 
@@ -44,6 +44,21 @@ Add the following to your HTML-file.
 ```
 
 Then create a script for your layout and use the widgets:
+
+## Routing
+
+The framework also gives a simple Router to navigate to the different Pages.
+You can register your Page under a given Route and then access it with this route.
+
+```js
+const router = new Router();            // create new router
+
+router.setDefault(mainPage)             // set the default page to the mainPage
+router.default();                       // navigate to the default page
+
+router.addRoute("/games", gamesPage);   // register a Route
+router.to("/games");                    // navigate to the Route
+```
 
 ## Widgets
 
