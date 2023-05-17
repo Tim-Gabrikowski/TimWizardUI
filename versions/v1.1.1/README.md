@@ -125,22 +125,23 @@ Ein Seite, die einzeln angezeigt werden kann. Ist eine Flexbox.
 
 ```javascript
 let page = page_create({
-	id: "test_page", // die Id des Elements
-	title: "New generated page", // generate a Header at the top of the page if provided
-	center: false, // Center the page vertically
-	destroyOnHide: true, // (default: false) => Delete the page on Hide from DOM
-	style: {
-		// style Attributes (ALL AVAILABLE CSS ATTRIBUTES)
-		height: "500px", // (CSS-Property height)
-		width: "50%", // (CSS-Property width)
-	},
-	layout: "column", // layout [column | column-reverse | row | row-reverse | unset] (default; unset)
+  id: "test_page", // die Id des Elements
+  title: "New generated page", // generate a Header at the top of the page if provided
+  center: false, // Center the page vertically
+  destroyOnHide: true, // (default: false) => Delete the page on Hide from DOM
+  style: {
+    // style Attributes (ALL AVAILABLE CSS ATTRIBUTES)
+    height: "500px", // (CSS-Property height)
+    width: "50%", // (CSS-Property width)
+  },
+  layout: "column", // layout [column | column-reverse | row | row-reverse | unset] (default; unset)
   hide: true, // hide the element on create
   children: [
     // array of child elements from top to bottom
-		create_text({ text: "Ich bin ein Text" }), // generator function of child element
-	],
-	onshow: function () {}, // Eventhandler when the page is shown
+    create_text({text: "Ich bin ein Text"}), // generator function of child element
+  ],
+  onshow: function () {
+  }, // Eventhandler when the page is shown
 });
 ```
 
@@ -156,18 +157,18 @@ Inputfeld ...
 
 ```javascript
 let input = field_create({
-	id: "test_input", // die Id des Elements
-	className: "", // CSS-Klassen zum anhängen
-	type: "text", // Typ des Input elements
-	color: "", // CSS-Colordefinition für das Element
-	defaultValue: "default", // Default value for the Input
-	placeholder: "Type something", // placeholder
-	validator: {
-		// validators
-		required: true, // is the field required?
-		minLength: 4, // minimale Länge des inputs
-		maxLength: 8, // maximale Länge des inputs
-	},
+  id: "test_input", // die Id des Elements
+  className: "", // CSS-Klassen zum anhängen
+  type: "text", // Typ des Input elements
+  color: "", // CSS-Colordefinition für das Element
+  defaultValue: "default", // Default value for the Input
+  placeholder: "Type something", // placeholder
+  validator: {
+    // validators
+    required: true, // is the field required?
+    minLength: 4, // minimale Länge des inputs
+    maxLength: 8, // maximale Länge des inputs
+  },
 });
 input.change("new Value"); // Value des Input-Elements setzen
 input.get(); // Value des Input-Elements bekommen
@@ -201,14 +202,14 @@ Ohne Bilder ist eine Internetseite keine Internetseite, oder?
 
 ```javascript
 let image = image_create({
-	id: "test_image", // Die ID des Elements
-	classes: "", // CSS-Klassen
-	src: "", // Bildurl
-	alt: "", // Alternativtext, wenn das Bild nicht da ist
-	style: {
-		// CSS Style Attribute
-		width: "100px",
-	},
+  id: "test_image", // Die ID des Elements
+  classes: "", // CSS-Klassen
+  src: "", // Bildurl
+  alt: "", // Alternativtext, wenn das Bild nicht da ist
+  style: {
+    // CSS Style Attribute
+    width: "100px",
+  },
 });
 ```
 
