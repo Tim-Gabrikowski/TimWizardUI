@@ -103,9 +103,9 @@ html, body {
 
 .button-plain:hover, .button-plain:active, .button-plain:focus,
 .button:hover, .button:active, .button:focus {
-    color: var(--clr);
-    box-shadow: 0 0 35px var(--clr),
-    inset 0px 0px 0px 1px var(--clr);
+	color: var(--clr);
+	box-shadow: 0 0 35px var(--clr),
+	inset 0px 0px 0px 1px var(--clr);
 }
 
 .button:hover, .button:active, .button:focus {
@@ -220,6 +220,7 @@ html, body {
 	border: 2px solid var(--clr);
 	max-width: 150px;
 	overflow: hidden;
+	align-items: center;
 }
 
 .input::placeholder {
@@ -231,10 +232,10 @@ html, body {
 }
 
 .input:focus {
-    letter-spacing: 0.15em;
-    color: var(--clr);
-    box-shadow: 0 0 35px var(--clr),
-    inset 0px 0px 0px 1px var(--clr);
+	letter-spacing: 0.15em;
+	color: var(--clr);
+	box-shadow: 0 0 35px var(--clr),
+	inset 0px 0px 0px 1px var(--clr);
 }
 
 /* Chrome, Safari, Edge, Opera */

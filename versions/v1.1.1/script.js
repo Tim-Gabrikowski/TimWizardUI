@@ -207,7 +207,7 @@ function field_create(options) {
         }
 
         if (!valid) {
-            error.style.display = "block";
+            error.style.display = "flex";
             error.innerHTML = "Validation failed";
         } else {
             error.style.display = "none";

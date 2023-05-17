@@ -220,6 +220,7 @@ html, body {
 	border: 2px solid var(--clr);
 	max-width: 150px;
 	overflow: hidden;
+	align-items: center;
 }
 
 .input::placeholder {
