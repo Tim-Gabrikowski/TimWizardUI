@@ -210,8 +210,7 @@ function field_create(options) {
 
 		if (!valid) {
 			error.style.display = "block";
-			let errorString = errors.join("<br>");
-			error.innerHTML = errorString;
+			error.innerHTML = "Validation failed";
 		} else {
 			error.style.display = "none";
 		}
@@ -299,6 +298,4 @@ function _handle_show_hide(element, defaultShow = "flex") {
 		element.style.display = "none";
 	}
 }
-
-document.body.className = "center";
 

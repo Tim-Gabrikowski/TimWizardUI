@@ -156,18 +156,18 @@ Inputfeld ...
 
 ```javascript
 let input = field_create({
-	id: "test_input", // die Id des Elements
-	className: "", // CSS-Klassen zum anhängen
-	type: "text", // Typ des Input elements
-	color: "", // CSS-Colordefinition für das Element
-	defaultValue: "default", // Default value for the Input
-	placeholder: "Type something", // placeholder
-	validator: {
-		// validators
-		required: true, // is the field required?
-		minLength: 4, // minimale Länge des inputs
-		maxLength: 8, // maximale Länge des inputs
-	},
+  id: "test_input", // die Id des Elements
+  className: "", // CSS-Klassen zum anhängen
+  type: "text", // Typ des Input elements
+  color: "", // CSS-Colordefinition für das Element
+  defaultValue: "default", // Default value for the Input
+  placeholder: "Type something", // placeholder
+  validators: [
+    // each Validator is a function that takes the input as parameter and returns true or false (passed or not)
+    (value) => {
+      return value !== undefined
+    }
+  ]
 });
 input.change("new Value"); // Value des Input-Elements setzen
 input.get(); // Value des Input-Elements bekommen

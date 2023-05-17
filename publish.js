@@ -26,6 +26,11 @@ fs.copyFileSync(
 	path.join(__dirname, "./style.css"),
 	path.join(__dirname, "versions", version, "style.css")
 );
+console.log("copy font file...");
+fs.copyFileSync(
+	path.join(__dirname, "./ubuntu.woff2"),
+	path.join(__dirname, "versions", version, "ubuntu.woff2")
+);
 
 console.log("copy README.md file");
 fs.copyFileSync(

@@ -208,8 +208,7 @@ function field_create(options) {
 
         if (!valid) {
             error.style.display = "block";
-            let errorString = errors.join("<br>");
-            error.innerHTML = errorString;
+            error.innerHTML = "Validation failed";
         } else {
             error.style.display = "none";
         }
@@ -284,13 +283,11 @@ function _handle_children(element, options) {
         options.children.forEach(child => element.appendChild(child));
     }
 }
-
 function _handle_border(element, options) {
     if (options.border) {
         element.className += " border"
     }
 }
-
 function _handle_show_hide(element, defaultShow = "flex") {
     element.show = function () {
         element.style.display = defaultShow;
@@ -299,6 +296,4 @@ function _handle_show_hide(element, defaultShow = "flex") {
         element.style.display = "none";
     }
 }
-
-document.body.className = "center";
 
