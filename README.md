@@ -223,6 +223,16 @@ let msg = messagebox_create({
 
 Zum Anzeigen/Verstecken: `msg.show()` und `msg.hide()`
 
+### Cookies
+
+To easily save and access Cookies TimWizardUI provides 3 simple functions:
+
+```js
+cookies.set("lastVisit", "Mon, 31/13/23", 10);  // (name, value, expire in days) - Set a Cookie
+cookies.get("lastVisit");                       // (name) - Get Value of a Cookie
+cookies.erase("lastVisit");                     // (name) - Delete a Cookie
+```
+
 ## Versions
 
 List of versions and Changes to previous versions
@@ -232,4 +242,5 @@ List of versions and Changes to previous versions
 |   v1    | initial publish                                   |
 | v1.1.0  | add a router and the routing property to the page |
 | v1.1.1  | fix typo and styling error                        | 
+| v1.2.0  | Add a Cookie Manager                              |
 
